@@ -1,0 +1,91 @@
+# Multi-Agent Warehouse Task Allocation Configuration
+# Author: Rugved R. Kulkarni
+# Course: CSE 546 - Reinforcement Learning, Fall 2025
+
+# Environment Configuration
+environment:
+  n_stations: 2                    # Number of workstations
+  queue_capacity: 5                # Maximum jobs in queue per station
+  max_processing: 3                # Maximum concurrent jobs per station
+  job_arrival_prob: 0.8            # Probability of job arrival each step
+  processing_time_min: 2           # Minimum job processing time
+  processing_time_max: 5           # Maximum job processing time
+  congestion_threshold: 0.7        # Queue fill ratio for congestion
+  congestion_penalty: 0.8          # Penalty coefficient for congestion
+
+# Reward Configuration
+rewards:
+  successful_enqueue: 1.0          # Reward for successful job enqueue
+  job_completion: 10.0             # Reward for completing a job
+  queue_full_rejection: -2.0       # Penalty for rejection due to full queue
+  dispatcher_rejection: -5.0       # Penalty for dispatcher rejection
+
+# Training Configuration
+training:
+  total_episodes: 2000             # Total training episodes
+  max_steps_per_episode: 50        # Maximum steps per episode
+  eval_frequency: 100              # Episodes between evaluations
+  eval_episodes: 10                # Number of evaluation episodes
+  save_frequency: 500              # Episodes between model saves
+  seed: 42                         # Random seed
+
+# Tabular Q-Learning Configuration
+tabular:
+  learning_rate: 0.2               # Q-learning rate (alpha)
+  gamma: 0.99                      # Discount factor
+  epsilon_start: 1.0               # Initial exploration rate
+  epsilon_end: 0.05                # Final exploration rate
+  epsilon_decay: 0.995             # Exploration decay rate
+
+# DQN Configuration
+dqn:
+  learning_rate: 0.0001            # Network learning rate
+  gamma: 0.99                      # Discount factor
+  epsilon_start: 1.0               # Initial exploration rate
+  epsilon_end: 0.05                # Final exploration rate
+  epsilon_decay: 0.995             # Exploration decay rate
+  buffer_size: 100000              # Replay buffer capacity
+  batch_size: 64                   # Training batch size
+  target_update_freq: 100          # Steps between target network updates
+  hidden_dims: [128, 128]          # Hidden layer dimensions
+
+# PPO Configuration
+ppo:
+  learning_rate: 0.0003            # Network learning rate
+  gamma: 0.99                      # Discount factor
+  gae_lambda: 0.95                 # GAE lambda parameter
+  clip_epsilon: 0.2                # PPO clipping parameter
+  value_coef: 0.5                  # Value loss coefficient
+  entropy_coef: 0.01               # Entropy bonus coefficient
+  max_grad_norm: 0.5               # Maximum gradient norm
+  n_epochs: 4                      # PPO optimization epochs
+  batch_size: 64                   # Minibatch size
+  rollout_length: 128              # Steps per rollout
+  hidden_dims: [64, 64]            # Hidden layer dimensions
+
+# Multi-Agent PPO (MAPPO) Configuration
+mappo:
+  learning_rate: 0.0003            # Network learning rate
+  gamma: 0.99                      # Discount factor
+  gae_lambda: 0.95                 # GAE lambda parameter
+  clip_epsilon: 0.2                # PPO clipping parameter
+  value_coef: 0.5                  # Value loss coefficient
+  entropy_coef: 0.01               # Entropy bonus coefficient
+  max_grad_norm: 0.5               # Maximum gradient norm
+  n_epochs: 4                      # PPO optimization epochs
+  batch_size: 64                   # Minibatch size
+  rollout_length: 128              # Steps per rollout
+  hidden_dims: [64, 64]            # Hidden layer dimensions
+  shared_critic: true              # Use shared critic (CTDE)
+
+# Logging Configuration
+logging:
+  use_tensorboard: true            # Enable TensorBoard logging
+  log_dir: "runs"                  # TensorBoard log directory
+  print_frequency: 10              # Episodes between console prints
+
+# Model Saving Configuration
+checkpoints:
+  save_dir: "results/models"       # Directory for saved models
+  keep_best: true                  # Keep best model based on eval reward
+  keep_last: true                  # Keep last model
