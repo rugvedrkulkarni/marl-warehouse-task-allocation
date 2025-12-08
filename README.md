@@ -274,11 +274,11 @@ This project was developed as part of:
 
 ## 👤 Author
 
-**Rugved R. Kulkarni**
+**Rugved R Kulkarni**
 - MS Robotics, University at Buffalo
 - Email: rk62@buffalo.edu
-- LinkedIn: [Your LinkedIn]
-- GitHub: [@your-github-username]
+- LinkedIn: https://www.linkedin.com/in/rugved-r-kulkarni-49a717172/
+
 
 ## 📄 License
 
